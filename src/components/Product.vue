@@ -1,26 +1,34 @@
 <template>
     <div class="product">
         <div class="image">
-            <img class="product-img" src="src/img/p1.png">
+            <img class="product-img" :src="item.img">
         </div>
         <div class="product-info">
-            <div class="product-name">Apple BYZ S852I</div>
-            <div class="product-price">2927 ₽</div>
-            <div class="product-price-old">3527 ₽</div>
-
-            <div class="product-rating">
-                <div class="product-img-star">
-                    <img src="src/img/rating-star.svg" alt="">
+            <div class="product-info-left">
+                <div class="product-name">{{ item.title }}</div>
+                <div class="product-rating">
+                    <div class="product-img-star">
+                        <img src="src/img/rating-star.svg" alt="">
+                    </div>
+                    <div class="product-rating-score">{{ item.rate }}</div>
                 </div>
-                <div class="product-rating-score">4.7</div>
+
+            </div>
+            <div class="product-info-right">
+                <div class="product-price">{{ item.price }} ₽</div>
+                <div class="product-price-old" v-if="item.priceOld">{{ item.priceOld }} ₽</div>
                 <div class="product-btn-buy">Купить</div>
             </div>
+
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    props: {
+        item: Object
+    },
     data() {
         return {}
     },
@@ -49,24 +57,41 @@ export default {
 
 .product-info {
     padding-top: 54.36px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.product-info-left {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: space-between;
+    padding-left: 22px;
+}
+
+.product-info-right {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: space-between;
 }
 
 .product-name {
-    display: inline-block;
+    
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 600;
     font-size: 17px;
     line-height: 21px;
     color: #1C1C27;
-    padding-left: 21.96px;
 }
 
 .product-price {
-    display: inline-block;
+    /* display: inline-block;
     float: right;
     padding-right: 21px;
-    padding-bottom: 0px;
+    padding-bottom: 0px; */
 
     font-family: 'Montserrat';
     font-style: normal;
@@ -77,26 +102,22 @@ export default {
 }
 
 .product-rating {
-    display: block;
-    padding-left: 21.96px;
+    display: flex;
+    flex-direction: row;
+    /* padding-left: 21.96px;
     padding-bottom: 32.63px;
     padding-top: 9.98px;
-    padding-bottom: 32.6px;
+    padding-bottom: 32.6px; */
 }
 
 .product-img-star {
-    display: inline-block;
-    float: left;
 }
 
 .product-rating-score{
-    display: inline-block;
-    float: left;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 600;
     font-size: 17px;
-    line-height: 21px;
     color: #838383;
     padding-left: 10px;
     
@@ -104,9 +125,9 @@ export default {
 
 .product-price-old {
     
-    text-align: right;
+    /* text-align: right;
     padding-right: 28px;
-    padding-top: 0.13px;
+    padding-top: 0.13px; */
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 600;
@@ -118,8 +139,8 @@ export default {
 }
 
 .product-btn-buy {
-    display: inline-block;
-    float: right;
+    /* display: inline-block;
+    float: right; */
     padding-right: 18px;
     font-family: 'Montserrat';
     font-style: normal;
